@@ -1,0 +1,32 @@
+{
+  "name": "runrun",
+  "repository": "github:fabiospampinato/runrun",
+  "description": "A simple runner for npm scripts that can execute multiple scripts, in serial or in parallel.",
+  "version": "1.0.0",
+  "type": "module",
+  "bin": "dist/bin.js",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "clean": "tsex clean",
+    "compile": "tsex compile",
+    "compile:watch": "tsex compile --watch",
+    "prepublishOnly": "npm run clean && npm run compile"
+  },
+  "keywords": [
+    "npm",
+    "script",
+    "runner",
+    "serial",
+    "parallel"
+  ],
+  "dependencies": {
+    "specialist": "^0.4.3",
+    "when-exit": "^2.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^18.11.7",
+    "tsex": "^1.1.2",
+    "typescript": "^4.8.4"
+  }
+}
