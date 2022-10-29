@@ -8,7 +8,7 @@ import Scex from '.';
 /* HELPERS */
 
 const name = 'scex';
-const version = '1.0.0';
+const version = '1.0.1';
 const description = 'A simple runner for npm scripts that can execute multiple scripts, in serial or in parallel.';
 
 /* MAIN */

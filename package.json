@@ -2,7 +2,7 @@
   "name": "scex",
   "repository": "github:fabiospampinato/scex",
   "description": "A simple runner for npm scripts that can execute multiple scripts, in serial or in parallel.",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "type": "module",
   "bin": "dist/bin.js",
   "main": "dist/index.js",
