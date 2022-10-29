@@ -1,11 +1,11 @@
-# RunRun
+# Scex
 
 A simple runner for npm scripts that can execute multiple scripts, in serial or in parallel.
 
 ## Install
 
 ```sh
-npm install -g runrun
+npm install -g scex
 ```
 
 ## Usage
@@ -13,13 +13,13 @@ npm install -g runrun
 Execute multiple npm scripts in serial:
 
 ```
-runrun foo bar baz
+scex foo bar baz
 ```
 
 Execute multiple npm scripts in parallel:
 
 ```
-runrun -p foo bar baz
+scex -p foo bar baz
 ```
 
 ## License

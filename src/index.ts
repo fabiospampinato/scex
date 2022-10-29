@@ -7,7 +7,7 @@ import {mapParallel, mapSerial} from './utils';
 
 /* MAIN */
 
-const RunRun = {
+const Scex = {
 
   /* API */
 
@@ -41,7 +41,7 @@ const RunRun = {
 
     const map = parallel ? mapParallel : mapSerial;
 
-    return map ( scripts, RunRun.runSingle );
+    return map ( scripts, Scex.runSingle );
 
   }
 
@@ -49,4 +49,4 @@ const RunRun = {
 
 /* EXPORT */
 
-export default RunRun;
+export default Scex;
