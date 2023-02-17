@@ -2,31 +2,20 @@
 
 /* IMPORT */
 
-import {program, updater} from 'specialist';
+import {bin} from 'specialist';
 import Scex from '.';
-
-/* HELPERS */
-
-const name = 'scex';
-const version = '1.0.1';
-const description = 'A simple runner for npm scripts that can execute multiple scripts, in serial or in parallel.';
 
 /* MAIN */
 
-updater ({ name, version });
-
-program
-  .name ( name )
-  .version ( version )
-  .description ( description )
-  .option ( '-p, --parallel', 'Execute scripts in serial' )
-  .option ( '-s, --serial', 'Execute scripts in parallel (default)' )
-  .arguments ( '<scripts...>' )
-  .action ( async ( scripts, options ) => {
-    if ( options.serial === true && options.parallel === true ) throw new Error ( '"serial" and "parallel" can not be both "true"' );
-    if ( options.serial === false && options.parallel === false ) throw new Error ( '"serial" and "parallel" can not be both "false"' );
-    await Scex.runMultiple ( scripts, !!options.parallel );
-    process.exit ( 0 );
-  });
-
-program.parse ();
+bin ( 'scex', 'A simple runner for npm scripts that can execute multiple scripts, in serial or in parallel' )
+  /* DEFAULT COMMAND */
+  .option ( '-p, --parallel', 'Execute scripts in paralle (default)' )
+  .option ( '-s, --serial', 'Execute scripts in serial' )
+  .argument ( '<scripts...>', 'Script names to execute' )
+  .action ( ( options, scripts ) => {
+    const {serial, parallel} = options;
+    if ( serial && parallel ) throw new Error ( '"serial" and "parallel" can not be both "true"' );
+    return Scex.runMultiple ( scripts, !serial );
+  })
+  /* RUN */
+  .run ();

@@ -2,6 +2,7 @@
 /* IMPORT */
 
 import {spawn} from 'node:child_process';
+import process from 'node:process';
 import whenExit from 'when-exit';
 import {mapParallel, mapSerial} from './utils';
 
