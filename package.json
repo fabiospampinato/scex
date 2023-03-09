@@ -22,6 +22,7 @@
     "parallel"
   ],
   "dependencies": {
+    "find-up-json": "^2.0.2",
     "specialist": "^1.2.0",
     "when-exit": "^2.1.0"
   },

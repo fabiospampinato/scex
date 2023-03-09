@@ -1,5 +1,21 @@
 
+/* IMPORT */
+
+import findUp from 'find-up-json';
+
 /* MAIN */
+
+const getPackage = (() => {
+
+  let cached: ({ name?: string, version?: string, scripts?: Partial<Record<string, string>> });
+
+  return (): ({ name?: string, version?: string, scripts?: Partial<Record<string, string>> }) => {
+
+    return cached ||= findUp ( 'package.json' )?.content || {};
+
+  };
+
+})();
 
 const mapParallel = <T, R> ( values: T[], iterator: ( value: T, index: number, values: T[] ) => R ): Promise<Awaited<R>[]> => {
 
@@ -28,6 +44,20 @@ const mapSerial = async <T, R> ( values: T[], iterator: ( value: T, index: numbe
 
 };
 
+const resolveNpmRun = ( script: string ): string => {
+
+  return `npm run "${script}"`;
+
+};
+
+const resolvePackage = ( script: string ): string => {
+
+  const pkg = getPackage ();
+
+  return pkg.scripts?.[script] || resolveNpmRun ( script );
+
+};
+
 /* EXPORT */
 
-export {mapParallel, mapSerial};
+export {getPackage, mapParallel, mapSerial, resolveNpmRun, resolvePackage};

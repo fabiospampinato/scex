@@ -4,7 +4,7 @@
 import {spawn} from 'node:child_process';
 import process from 'node:process';
 import whenExit from 'when-exit';
-import {mapParallel, mapSerial} from './utils';
+import {getPackage, mapParallel, mapSerial, resolveNpmRun, resolvePackage} from './utils';
 
 /* MAIN */
 
@@ -12,11 +12,30 @@ const Scex = {
 
   /* API */
 
-  runSingle: ( script: string ): Promise<number> => {
+  runSingle: ( script: string, bypass: boolean = false ): Promise<number> => {
 
     return new Promise ( resolve => {
 
-      const proc = spawn ( `npm run "${script}"`, {
+      let command = resolveNpmRun ( script );
+
+      if ( bypass ) {
+
+        command = resolvePackage ( script );
+
+        const pkg = getPackage ();
+
+        if ( pkg ) {
+
+          console.log ( '' );
+          console.log ( `> ${pkg.name}@${pkg.version} ${script}` );
+          console.log ( `> ${command}` );
+          console.log ( '' );
+
+        }
+
+      }
+
+      const proc = spawn ( command, {
         shell: true,
         stdio: ['ignore', 'inherit', 'inherit']
       });
@@ -38,11 +57,12 @@ const Scex = {
 
   },
 
-  runMultiple: ( scripts: string[], parallel: boolean = false ): Promise<number[]> => {
+  runMultiple: ( scripts: string[], parallel: boolean = false, bypass: boolean = false ): Promise<number[]> => {
 
     const map = parallel ? mapParallel : mapSerial;
+    const run = ( script: string ) => Scex.runSingle ( script, bypass );
 
-    return map ( scripts, Scex.runSingle );
+    return map ( scripts, run );
 
   }
 
