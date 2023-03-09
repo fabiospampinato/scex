@@ -22,12 +22,12 @@
     "parallel"
   ],
   "dependencies": {
-    "specialist": "^1.1.0",
+    "specialist": "^1.2.0",
     "when-exit": "^2.1.0"
   },
   "devDependencies": {
-    "@types/node": "^18.13.0",
-    "tsex": "^2.2.0",
+    "@types/node": "^18.15.0",
+    "tsex": "^2.2.2",
     "typescript": "^4.9.5"
   }
 }
