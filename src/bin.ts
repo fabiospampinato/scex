@@ -16,6 +16,7 @@ bin ( 'scex', 'A simple runner for npm scripts that can execute multiple scripts
     const {serial, parallel} = options;
     if ( serial && parallel ) throw new Error ( '"serial" and "parallel" can not be both "true"' );
     return Scex.runMultiple ( scripts, !serial );
+    if ( !serial && !parallel ) throw new Error ( 'Either "serial" or "parallel" must be "true"' );
   })
   /* RUN */
   .run ();
