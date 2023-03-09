@@ -26,8 +26,11 @@ const Scex = {
 
         if ( pkg ) {
 
+          const name = pkg.name || '???';
+          const version = pkg.version || '???';
+
           console.log ( '' );
-          console.log ( `> ${pkg.name}@${pkg.version} ${script}` );
+          console.log ( `> ${name}@${version} ${script}` );
           console.log ( `> ${command}` );
           console.log ( '' );
 
