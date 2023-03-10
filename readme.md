@@ -13,7 +13,7 @@ npm install -g scex
 Execute multiple npm scripts in serial:
 
 ```
-scex foo bar baz
+scex -s foo bar baz
 ```
 
 Execute multiple npm scripts in parallel:
