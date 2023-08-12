@@ -27,8 +27,8 @@
     "when-exit": "^2.1.0"
   },
   "devDependencies": {
-    "@types/node": "^18.15.0",
-    "tsex": "^2.2.2",
-    "typescript": "^4.9.5"
+    "@types/node": "^20.4.10",
+    "tsex": "^3.0.1",
+    "typescript": "^5.1.6"
   }
 }
